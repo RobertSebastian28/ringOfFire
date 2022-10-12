@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "srrinfoffire": {
+      "hosting": {
+        "ringOfFire": [
+          "srrinfoffire"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "srrinfoffire"
+  }
+}
