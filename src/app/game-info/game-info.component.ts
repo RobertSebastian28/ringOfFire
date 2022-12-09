@@ -31,6 +31,10 @@ export class GameInfoComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
+  /**
+   * This function assigns values to certain variables 
+   * 
+   */
   ngOnChanges(): void {
     if (this.card) {
       let cardNumber = +this.card.split('_')[1];

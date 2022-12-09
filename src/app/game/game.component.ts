@@ -17,6 +17,7 @@ export class GameComponent implements OnInit {
 
   game: Game;
   gameId: string;
+  AddedPlayer: boolean = false;
 
   constructor(public firestore: AngularFirestore,
     public dialog: MatDialog,
@@ -26,6 +27,11 @@ export class GameComponent implements OnInit {
 
   }
 
+  /**
+   * this function is a lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
+   * Define an ngOnInit() method to handle any additional initialization tasks.
+   * 
+   */
   ngOnInit(): void {
     this.newGame();
     this.route.params.subscribe((params) => {
@@ -50,13 +56,21 @@ export class GameComponent implements OnInit {
 
   }
 
+  /**
+   * this function assigns the class Game to the variable game 
+   * 
+   */
   newGame() {
     this.game = new Game();
-
   }
 
+  /**
+   * this function checks the values of two bolic variables. 
+   * If the variables have the correct values, the values of certain variables are changed and certain functions are executed.  
+   * 
+   */
   takeCard() {
-    if (!this.game.pickCardAnimation) {
+    if (!this.game.pickCardAnimation && this.AddedPlayer) {
       this.game.currentCard = this.game.stack.pop();
       this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
@@ -68,13 +82,21 @@ export class GameComponent implements OnInit {
         this.saveGame();
       }, 1000);
     }
+    else if (!this.AddedPlayer) {
+      this.addPlayerInfo();
+    }
   }
 
+  /**
+   * This function opens a dialog box
+   * 
+   */
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe(name => {
       if (name && name.length > 0) {
+        this.AddedPlayer = true;
         this.game.players.push(name);
         this.saveGame();
       }
@@ -82,12 +104,31 @@ export class GameComponent implements OnInit {
     });
   }
 
+  /**
+   * This function saves certain values in the Firestore 
+   * 
+   */
   saveGame() {
     this
       .firestore
       .collection('games')
       .doc(this.gameId)
       .update(this.game.toJson());
+  }
+
+  /**
+   * This function makes a box appear in which an info for the user appears.
+   * 
+   */
+  addPlayerInfo() {
+    let id: any = 'add_player_info';
+    let infoContainer: any = document.getElementById(id);
+    infoContainer.style.display = 'flex';
+    infoContainer.innerHTML = 'Please add player first';
+
+    setTimeout(() => {
+      infoContainer.style.display = 'none';
+    }, 1800);
   }
 }
 

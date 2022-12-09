@@ -8,7 +8,21 @@
     background-image: url("/assets/img/gamble_table.jpg");
     background-repeat: no-repeat;
     background-position: 50%;
+}
 
+#add_player_info {
+    display: none;
+    position: absolute;
+    left: auto;
+    top: 50%;
+    z-index: 1;
+    background-color: black;
+    border-radius: 8px;
+    color: white;
+    width: 180px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 40px;
 }
 
 .card_stack {
@@ -99,6 +113,6 @@
     }
 
     @media (min-width: 720px) {
-            display: none;
+        display: none;
     }
 }

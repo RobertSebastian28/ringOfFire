@@ -17,6 +17,10 @@ export class Game {
         shuffle(this.stack);
     }
 
+    /**
+     * This function returns the values of certain variables
+     * 
+     */
     public toJson() {
         return {
             players: this.players,
@@ -29,7 +33,12 @@ export class Game {
     }
 }
 
-
+/**
+ * This function ensures that the index of the card array is randomly generated. 
+ * 
+ * @param array 
+ * @returns array
+ */
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
 

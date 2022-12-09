@@ -1,7 +1,8 @@
 <div class="start_screen">
-    <img src="assets/img/start_img.png">
+    <img *ngIf="!lower570px" class="background_start_img" src="assets/img/start_img.png">
+    <img *ngIf="lower570px" class="background_start_img" src="assets/img/start_background.jpg">
     <div class="start_label">
-        <img (click)="newGame()" src="assets/img/start_label4.png">
+        <img class="start_label_img" (click)="newGame()" src="assets/img/start_label4.png">
     </div>
 
 </div>

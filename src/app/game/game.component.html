@@ -2,13 +2,15 @@
     [playerActive]="i == game.currentPlayer" [name]="player" class="player_position hide_mobile">
 </app-player>
 
-<div class="scroll_container hide_desktop">
+<div class="scroll_container">
     <app-player-mobile *ngFor="let player of game.players; let i = index;" [playerActive]="i == game.currentPlayer"
         [name]="player">
     </app-player-mobile>
 </div>
 
 <div class="field">
+
+    <div id="add_player_info"></div>
 
     <div class="card_stack">
         <img *ngFor="let c of [0,1,2,3]; let i = index;" [ngStyle]="{'right.px': i * 5}" class="card"
