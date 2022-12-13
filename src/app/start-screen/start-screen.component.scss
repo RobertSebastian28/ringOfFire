@@ -39,8 +39,25 @@
         object-fit: cover;
     }
 
+    .hide_show2 {
+        display: block;
+    }
+
+    .hide_show {
+        display: none;
+    }
+
     .start_label_img {
         width: 250px !important;
     }
+}
 
+@media (min-width: 570px) { 
+    .hide_show {
+        display: block;
+    }
+
+    .hide_show2 {
+        display: none;
+    }
 }

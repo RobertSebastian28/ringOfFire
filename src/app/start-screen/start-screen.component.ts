@@ -10,12 +10,9 @@ import { Game } from 'src/models/game';
 })
 export class StartScreenComponent implements OnInit {
 
-  lower570px = false;
-
   constructor(private firestore: AngularFirestore, private router: Router) { }
 
   ngOnInit(): void {
-    this.responsiveCheck();
   }
 
   /**
@@ -33,19 +30,4 @@ export class StartScreenComponent implements OnInit {
       });
   }
 
-  /**
-   * This function checks in a predefined interval if the width of the applications
-   * window is smaller or larger than 570 px and changes the variable lower570px to true or false depending on what is true.
-   * 
-   */
-  responsiveCheck() {
-    setInterval(() => {
-        if(innerWidth < 570) {
-          this.lower570px = true;
-        }
-        if(innerWidth > 570) {
-          this.lower570px = false;
-        }
-    },100);
-  }
 }
