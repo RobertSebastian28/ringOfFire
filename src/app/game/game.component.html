@@ -9,9 +9,6 @@
 </div>
 
 <div class="field">
-
-    <div id="add_player_info"></div>
-
     <div class="card_stack">
         <img *ngFor="let c of [0,1,2,3]; let i = index;" [ngStyle]="{'right.px': i * 5}" class="card"
             src="assets/img/cards/purple_back.png">
@@ -20,7 +17,6 @@
         <img *ngFor="let card of game.playedCards" class="played_card" src="assets/img/cards/{{ card }}.png">
         <img (click)="takeCard()" *ngIf="game.pickCardAnimation" style="right: 25px;" class="pick_card"
             src="assets/img/cards/{{ game.currentCard }}.png">
-
     </div>
 </div>
 

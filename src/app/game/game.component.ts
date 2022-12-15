@@ -83,7 +83,7 @@ export class GameComponent implements OnInit {
       }, 1000);
     }
     else if (!this.AddedPlayer) {
-      this.addPlayerInfo();
+      this.openDialog();
     }
   }
 
@@ -114,21 +114,6 @@ export class GameComponent implements OnInit {
       .collection('games')
       .doc(this.gameId)
       .update(this.game.toJson());
-  }
-
-  /**
-   * This function makes a box appear in which an info for the user appears.
-   * 
-   */
-  addPlayerInfo() {
-    let id: any = 'add_player_info';
-    let infoContainer: any = document.getElementById(id);
-    infoContainer.style.display = 'flex';
-    infoContainer.innerHTML = 'Please add player first';
-
-    setTimeout(() => {
-      infoContainer.style.display = 'none';
-    }, 1800);
   }
 }
 
