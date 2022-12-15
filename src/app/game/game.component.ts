@@ -17,7 +17,6 @@ export class GameComponent implements OnInit {
 
   game: Game;
   gameId: string;
-  AddedPlayer: boolean = false;
 
   constructor(public firestore: AngularFirestore,
     public dialog: MatDialog,
@@ -49,6 +48,7 @@ export class GameComponent implements OnInit {
           this.game.players = game.players;
           this.game.stack = game.stack;
           this.game.pickCardAnimation = game.pickCardAnimation;
+          this.game.AddedPlayer = game.AddedPlayer;
           this.game.currentCard = game.currentCard;
         })
 
@@ -70,7 +70,7 @@ export class GameComponent implements OnInit {
    * 
    */
   takeCard() {
-    if (!this.game.pickCardAnimation && this.AddedPlayer) {
+    if (!this.game.pickCardAnimation && this.game.AddedPlayer) {
       this.game.currentCard = this.game.stack.pop();
       this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
@@ -82,7 +82,7 @@ export class GameComponent implements OnInit {
         this.saveGame();
       }, 1000);
     }
-    else if (!this.AddedPlayer) {
+    else if (!this.game.AddedPlayer) {
       this.openDialog();
     }
   }
@@ -96,7 +96,7 @@ export class GameComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(name => {
       if (name && name.length > 0) {
-        this.AddedPlayer = true;
+        this.game.AddedPlayer = true;
         this.game.players.push(name);
         this.saveGame();
       }
